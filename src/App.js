@@ -1,16 +1,26 @@
 // import logo from './logo.svg';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import './App.css';
 import Header from './Components/Layout/Header';
 import Meals from './Components/Meals/Meals';
 import Cart from './Components/Cart/Cart';
 
 function App() {
+  const [cartIsShown,setCartIsShown] = useState(false)
+ 
+  const showCardHandler = () => {
+    setCartIsShown(true);
+  }
+
+  const hideCardHandler = () => {
+    setCartIsShown(false);
+  }
+  
   return (
    
    <Fragment>
-   <Cart />
-    <Header />
+   {cartIsShown && <Cart onClose={hideCardHandler} />}
+    <Header onShowCart ={showCardHandler} />
     <main>
       <Meals />
     </main>  
